@@ -57,9 +57,11 @@ Drag to **Applications**, open. First launch detects your Mac, picks the right m
 | | Light | Balanced | Premium | Power |
 |---|---|---|---|---|
 | **RAM** | 8–18 GB | 19–34 GB | 35–56 GB | 57 GB + |
-| **Mac** | M1 / M2 / M3 (base) | M1 / M2 / M3 / M4 Pro | M2 / M3 / M4 Max | M2 / M3 Ultra |
+| **Mac** | M1 / M2 / M3 / M4 / M5 (base) | M1 → M5 Pro | M2 → M5 Max | M2 / M3 Ultra |
 | **Model** | Gemma 4 E4B | Qwen 3.5 9B | Qwen 3.6 27B | Qwen 3.6 35B |
 | **On disk** | 3.3 GB | 6.6 GB | 17 GB | 22 GB |
+
+> M5 (Oct 2025), M5 Pro & M5 Max (Mar 2026) all detected and tiered automatically. M5 Ultra (Mac Studio) ships Oct 2026 — supported the day it lands.
 
 - macOS **13 Ventura** or later
 - Apple Silicon (M1 or newer)
