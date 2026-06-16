@@ -134,4 +134,4 @@ Local.Waifu_<version>_x64-setup.exe.sig    ← Windows updater signature
 
 Local Waifu is proprietary software.
 
-© 2026 Lumizone (Łukasz Blania) · NIP PL1990132289 · Made in Poland 🇵🇱
+© 2026 Lumizone (Łukasz Blania) · Made in Poland 🇵🇱
