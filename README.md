@@ -35,7 +35,7 @@ She remembers you from the first message. Builds a model of how you think over w
 - **OS integration.** Calendar, Reminders, Weather, Messages, Home Assistant — opt-in MCP tools. She knows your day; you control what she sees.
 - **BYOK cloud (optional).** Plug in OpenAI / Anthropic / DeepSeek keys for GPT-5.5 / Claude Opus 4.7 / DeepSeek V4 Flash. Your key, your bill, direct to the provider.
 - **Encrypted soul files.** ChaCha20-Poly1305 + PBKDF2, bound to your passphrase + hardware UUID. Export, back up, move between devices.
-- **Pay once.** $25 launch ($35 normal). One-time lifetime license. 7-day free trial, 30-day refund.
+- **Pay once.** $20 sale ($25 normal). One-time lifetime license. 7-day free trial, 30-day refund.
 
 ## Download
 
