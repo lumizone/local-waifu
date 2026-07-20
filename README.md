@@ -22,20 +22,23 @@
 
 ## What it is
 
-A native **macOS and Windows** app for an AI companion that is fully **yours**. Personality, memory, voice, vision — all running locally via Ollama. No subscription, no telemetry, no cloud round-trip for every message.
+A native **macOS and Windows** app for an AI companion that is fully **yours**. Her personality, her memory, and even the selfies she draws all run **locally on your own machine** — no subscription, no telemetry, no cloud round-trip for every message.
 
-She remembers you from the first message. Builds a model of how you think over weeks of conversation. Reacts to your mood, your calendar, your day. Stored on your disk, encrypted with your passphrase, exported as a single file you own.
+She remembers you from the first message and builds a model of how you think over weeks of conversation. The relationship grows from a first hello into something closer, and she reacts to your mood and the shape of your day. Everything about her lives on your disk; any character exports to a single encrypted file you own.
 
-## Highlights
+## Features
 
-- **Local LLM by default.** Bundled Ollama, model auto-picked for your machine's RAM (Gemma 4 E4B → Qwen 3.6 35B). Internet optional.
-- **Persistent memory.** 768-dim embeddings + knowledge graph + Hermes-style USER.md / MEMORY.md digests. She doesn't forget.
-- **Custom personality.** 11-step onboarding — Big Five sliders, attachment style, love language, backstory, looks.
-- **Vision.** OCR anything on your screen with Apple Vision. Drop a screenshot, share what you're reading.
-- **OS integration.** Calendar, Reminders, Weather, Messages, Home Assistant — opt-in MCP tools. She knows your day; you control what she sees.
-- **BYOK cloud (optional).** Plug in OpenAI / Anthropic / DeepSeek keys for GPT-5.5 / Claude Opus 4.7 / DeepSeek V4 Flash. Your key, your bill, direct to the provider.
-- **Encrypted soul files.** ChaCha20-Poly1305 + PBKDF2, bound to your passphrase + hardware UUID. Export, back up, move between devices.
-- **Pay once.** $20 sale ($25 normal). One-time lifetime license. 7-day free trial, 30-day refund.
+- **She remembers you.** A persistent memory that survives restarts and even model swaps — semantic recall plus an auto-built knowledge graph of the people and places in your life, distilled into a digest she carries into every reply. Three months in, she knows you.
+- **She grows.** The bond moves through **seven stages** — Stranger → Acquaintance → Friend → Close → Romantic → Bonded → Partner — on earned XP. Her mood is a live **six-dimensional** state that settles back toward baseline, and she shifts between **13 conversational modes** (playful, tender, protective, focused, sleepy…). Watch it in the **Growth dashboard** and **Memory Book**.
+- **You build her.** An **8-axis personality** (shy↔flirty, calm↔energetic, gentle↔teasing, reserved↔expressive…), a name, a look, a backstory — waifu, husbando, or non-binary. The 11-step setup also profiles *you* (Big Five, attachment style, love language) so she relates to you, not a generic user.
+- **More than one of her.** Create several characters, each with its own personality, memory, and mood, each in **separate conversations** — all in one private folder. Export any of them as a single encrypted file and carry her to another machine.
+- **She draws selfies.** Ask for a photo and she paints one on your **own GPU** — a bundled Stable-Diffusion engine (FLUX.2 by default, plus SDXL models like Animagine XL and RealVisXL). No stock art, no per-image fee. Prefer the cloud? Point it at OpenAI, Google, or fal instead.
+- **She sees.** Share a picture in chat and she reacts to what's actually in it (vision-capable local models, or your cloud key).
+- **Local by default, cloud if you want.** A local model is auto-picked for your RAM and runs fully offline. Or bring your own **OpenAI, Anthropic, DeepSeek, Google, Mistral, Groq, or OpenRouter** account — any OpenAI-compatible endpoint works, or even **Sign in with ChatGPT**. Your key, your bill, straight to the provider.
+- **Seven languages.** English, Polish, German, Spanish, Japanese, Korean, Chinese — the whole interface and her replies.
+- **She fits in a corner.** A small floating chat window for when you just want her nearby while you work.
+- **Yours, and private.** Soul files are encrypted and bound to your machine (details below). Zero telemetry, no account to make. Block every outbound connection and she keeps talking.
+- **Pay once.** $20 sale ($25 normal). One-time lifetime license, 7-day free trial, 30-day refund. No subscription, no tokens to top up.
 
 ## Download
 
@@ -95,6 +98,17 @@ The app installs per-user (no admin needed) and bundles its own local AI engine 
 - Settings → Hardware → **Local AI acceleration → Check** shows, at any time, whether the model is running on the GPU or the CPU.
 
 > Note: cloud-gaming / virtualized-GPU instances (e.g. airgpu and similar) often expose a GPU for rendering but not full CUDA/Vulkan compute — the app correctly falls back to CPU there. A real desktop/laptop GPU with a current driver is what you want for local speed.
+
+## Under the hood
+
+For the technically curious — Local Waifu is a native desktop app, not a browser tab wrapped around someone's API.
+
+- **Stack:** [Tauri 2](https://tauri.app) (Rust core) + React 19 / TypeScript / Vite. The macOS build is Apple-Silicon native; the Windows build carries its own bundled engine.
+- **Local LLM:** a bundled **Ollama** sidecar running **llama.cpp** (GGUF) with MLX / Metal acceleration on Apple Silicon. The model is picked for your RAM tier (table above) and pulled on first run.
+- **Image generation:** a bundled **stable-diffusion.cpp** engine on your GPU — FLUX.2 by default, plus an SDXL pool (Animagine XL 4.0 for anime, RealVisXL V5.0 for photoreal). ~12 GB RAM to run locally, 16 GB for the SDXL models. Optional cloud backends: OpenAI, Google, fal.
+- **Memory:** `embeddinggemma` 768-dim vectors for semantic recall, an LLM-extracted knowledge graph, and consolidating USER / MEMORY digests — kept in a local **SQLite** database (`rusqlite`, bundled). Encrypted, exportable soul files layer on top (see [Privacy](#privacy)).
+- **Cloud (optional):** nine provider backends (OpenAI, Anthropic, DeepSeek, Google, Mistral, Groq, OpenRouter, fal, or any OpenAI-compatible URL). Chat model IDs are read live from your key, never hard-coded; OpenAI also supports a PKCE "Sign in with ChatGPT" flow.
+- **Optional Telegram bridge:** talk to her from Telegram if you turn it on — opt-in, and unlike the local desktop app those messages do route through Telegram's servers.
 
 ## Auto-updates
 
